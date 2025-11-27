@@ -25,33 +25,33 @@ def render_html_content(
             body { 
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
                 margin: 0; 
-                padding: 16px; 
-                background: #fafafa;
-                color: #333;
-                line-height: 1.5;
+                padding: 16px;
+                background: #f5f5f5;
+                color: #333333;
+                line-height: 1.4;
             }
             
             .container {
-                max-width: 1200px;
+                max-width: 1400px;
                 margin: 0 auto;
-                background: white;
+                background: #ffffff;
                 border-radius: 12px;
                 overflow: hidden;
-                box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+                box-shadow: 0 4px 24px rgba(0,0,0,0.1);
             }
             
             .header {
                 background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
                 color: white;
-                padding: 32px 24px;
+                padding: 24px;
                 text-align: center;
                 position: relative;
             }
             
             .save-buttons {
                 position: absolute;
-                top: 16px;
-                right: 16px;
+                top: 12px;
+                right: 12px;
                 display: flex;
                 gap: 8px;
             }
@@ -60,10 +60,10 @@ def render_html_content(
                 background: rgba(255, 255, 255, 0.2);
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 color: white;
-                padding: 8px 16px;
+                padding: 6px 12px;
                 border-radius: 6px;
                 cursor: pointer;
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 500;
                 transition: all 0.2s ease;
                 backdrop-filter: blur(10px);
@@ -86,16 +86,16 @@ def render_html_content(
             }
             
             .header-title {
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 700;
-                margin: 0 0 20px 0;
+                margin: 0 0 16px 0;
             }
             
             .header-info {
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
-                gap: 16px;
-                font-size: 14px;
+                gap: 12px;
+                font-size: 13px;
                 opacity: 0.95;
             }
             
@@ -105,328 +105,82 @@ def render_html_content(
             
             .info-label {
                 display: block;
-                font-size: 12px;
+                font-size: 11px;
                 opacity: 0.8;
-                margin-bottom: 4px;
+                margin-bottom: 2px;
             }
             
             .info-value {
                 font-weight: 600;
-                font-size: 16px;
+                font-size: 14px;
             }
             
             .content {
-                padding: 24px;
+                padding: 20px;
             }
             
-            .word-group {
-                margin-bottom: 40px;
-            }
-            
-            .word-group:first-child {
-                margin-top: 0;
-            }
-            
-            .word-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 20px;
-                padding-bottom: 8px;
-                border-bottom: 1px solid #f0f0f0;
-            }
-            
-            .word-info {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-            
-            .word-name {
-                font-size: 17px;
-                font-weight: 600;
-                color: #1a1a1a;
-            }
-            
-            .word-count {
-                color: #666;
-                font-size: 13px;
-                font-weight: 500;
-            }
-            
-            .word-count.hot { color: #dc2626; font-weight: 600; }
-            .word-count.warm { color: #ea580c; font-weight: 600; }
-            
-            .word-index {
-                color: #999;
-                font-size: 12px;
-            }
-            
-            /* 平台分类容器 */
-            .platform-group {
-                margin-bottom: 32px;
-            }
-            
-            .platform-title {
-                color: #666;
-                font-size: 14px;
-                font-weight: 600;
-                margin: 0 0 16px 0;
-                padding: 8px 0;
-                border-bottom: 2px solid #e5e7eb;
-            }
-            
-            /* 新闻卡片容器 */
-            .news-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 16px;
-                margin-bottom: 24px;
-            }
-            
-            /* 新闻卡片样式 */
-            .news-card {
-                background: #f8f9fa;
-                border: 1px solid #e5e7eb;
-                border-radius: 8px;
-                padding: 16px;
-                transition: all 0.2s ease;
-                position: relative;
-                overflow: hidden;
-            }
-            
-            .news-card:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                border-color: #d1d5db;
-            }
-            
-            .news-card.new::before {
-                content: "NEW";
-                position: absolute;
-                top: 12px;
-                right: 12px;
-                background: #fbbf24;
-                color: #92400e;
-                font-size: 9px;
-                font-weight: 700;
-                padding: 3px 6px;
-                border-radius: 4px;
-                letter-spacing: 0.5px;
-            }
-            
-            .card-header {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                margin-bottom: 12px;
-                flex-wrap: wrap;
-            }
-            
-            .card-source {
-                color: #666;
-                font-size: 12px;
-                font-weight: 500;
-            }
-            
-            .card-rank {
-                color: #fff;
-                background: #6b7280;
-                font-size: 10px;
-                font-weight: 700;
-                padding: 2px 6px;
-                border-radius: 10px;
-                min-width: 18px;
-                text-align: center;
-            }
-            
-            .card-rank.top { background: #dc2626; }
-            .card-rank.high { background: #ea580c; }
-            
-            .card-time {
-                color: #999;
-                font-size: 11px;
-            }
-            
-            .card-count {
-                color: #059669;
-                font-size: 11px;
-                font-weight: 500;
-            }
-            
-            .card-title {
-                font-size: 15px;
-                line-height: 1.4;
-                color: #1a1a1a;
-                margin: 0 0 8px 0;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            
-            .card-link {
-                color: #2563eb;
-                text-decoration: none;
-            }
-            
-            .card-link:hover {
-                text-decoration: underline;
-            }
-            
-            .card-link:visited {
-                color: #7c3aed;
-            }
-            
-            /* 传统新闻项样式，保持兼容 */
-            .news-item {
-                margin-bottom: 20px;
-                padding: 16px 0;
-                border-bottom: 1px solid #f5f5f5;
-                position: relative;
-                display: flex;
-                gap: 12px;
-                align-items: center;
-            }
-            
-            .news-item:last-child {
-                border-bottom: none;
-            }
-            
-            .news-item.new::after {
-                content: "NEW";
-                position: absolute;
-                top: 12px;
-                right: 0;
-                background: #fbbf24;
-                color: #92400e;
-                font-size: 9px;
-                font-weight: 700;
-                padding: 3px 6px;
-                border-radius: 4px;
-                letter-spacing: 0.5px;
-            }
-            
-            .news-number {
-                color: #999;
-                font-size: 13px;
-                font-weight: 600;
-                min-width: 20px;
-                text-align: center;
-                flex-shrink: 0;
-                background: #f8f9fa;
-                border-radius: 50%;
-                width: 24px;
-                height: 24px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                align-self: flex-start;
-                margin-top: 8px;
-            }
-            
-            .news-content {
-                flex: 1;
-                min-width: 0;
-                padding-right: 40px;
-            }
-            
-            .news-item.new .news-content {
-                padding-right: 50px;
-            }
-            
-            .news-header {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                margin-bottom: 8px;
-                flex-wrap: wrap;
-            }
-            
-            .source-name {
-                color: #666;
-                font-size: 12px;
-                font-weight: 500;
-            }
-            
-            .rank-num {
-                color: #fff;
-                background: #6b7280;
-                font-size: 10px;
-                font-weight: 700;
-                padding: 2px 6px;
-                border-radius: 10px;
-                min-width: 18px;
-                text-align: center;
-            }
-            
-            .rank-num.top { background: #dc2626; }
-            .rank-num.high { background: #ea580c; }
-            
-            .time-info {
-                color: #999;
-                font-size: 11px;
-            }
-            
-            .count-info {
-                color: #059669;
-                font-size: 11px;
-                font-weight: 500;
-            }
-            
-            .news-title {
-                font-size: 15px;
-                line-height: 1.4;
-                color: #1a1a1a;
-                margin: 0;
-            }
-            
-            .news-link {
-                color: #2563eb;
-                text-decoration: none;
-            }
-            
-            .news-link:hover {
-                text-decoration: underline;
-            }
-            
-            .news-link:visited {
-                color: #7c3aed;
-            }
-            
+            /* 新增热点区域 */
             .new-section {
-                margin-top: 40px;
-                padding-top: 24px;
-                border-top: 2px solid #f0f0f0;
+                margin-bottom: 32px;
+                padding: 20px;
+                background: #ffffff;
+                border-radius: 8px;
+                border: 1px solid #e0e0e0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             }
             
             .new-section-title {
-                color: #1a1a1a;
+                color: #333333;
                 font-size: 16px;
                 font-weight: 600;
-                margin: 0 0 20px 0;
+                margin: 0 0 16px 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
             
-            .new-source-group {
-                margin-bottom: 24px;
+            .new-section-title::before {
+                content: "🔥";
+                font-size: 18px;
+            }
+            
+            /* 新增热点平台卡片容器 */
+            .new-platforms-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 16px;
+            }
+            
+            /* 新增热点平台卡片 */
+            .new-platform-card {
+                background: #fafafa;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 16px;
+                transition: all 0.2s ease;
+            }
+            
+            .new-platform-card:hover {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                border-color: #d0d0d0;
             }
             
             .new-source-title {
-                color: #666;
-                font-size: 13px;
-                font-weight: 500;
+                color: #666666;
+                font-size: 14px;
+                font-weight: 600;
                 margin: 0 0 12px 0;
                 padding-bottom: 6px;
-                border-bottom: 1px solid #f5f5f5;
+                border-bottom: 2px solid #f0f0f0;
             }
             
             .new-item {
                 display: flex;
-                align-items: center;
-                gap: 12px;
+                align-items: flex-start;
+                gap: 10px;
                 padding: 8px 0;
-                border-bottom: 1px solid #f9f9f9;
+                border-bottom: 1px solid #f0f0f0;
+                font-size: 13px;
             }
             
             .new-item:last-child {
@@ -434,31 +188,33 @@ def render_html_content(
             }
             
             .new-item-number {
-                color: #999;
-                font-size: 12px;
+                color: #999999;
+                font-size: 11px;
                 font-weight: 600;
-                min-width: 18px;
+                min-width: 16px;
                 text-align: center;
                 flex-shrink: 0;
-                background: #f8f9fa;
+                background: #f0f0f0;
                 border-radius: 50%;
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                margin-top: 2px;
             }
             
             .new-item-rank {
                 color: #fff;
-                background: #6b7280;
-                font-size: 10px;
+                background: #999999;
+                font-size: 9px;
                 font-weight: 700;
-                padding: 3px 6px;
-                border-radius: 8px;
-                min-width: 20px;
+                padding: 2px 5px;
+                border-radius: 6px;
+                min-width: 18px;
                 text-align: center;
                 flex-shrink: 0;
+                margin-top: 2px;
             }
             
             .new-item-rank.top { background: #dc2626; }
@@ -470,15 +226,189 @@ def render_html_content(
             }
             
             .new-item-title {
-                font-size: 14px;
+                font-size: 13px;
                 line-height: 1.4;
-                color: #1a1a1a;
+                color: #333333;
                 margin: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             
+            /* 平台卡片容器 */
+            .platforms-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 16px;
+            }
+            
+            /* 平台卡片样式 */
+            .platform-card {
+                background: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                overflow: hidden;
+                transition: all 0.2s ease;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            }
+            
+            .platform-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+                border-color: #d0d0d0;
+            }
+            
+            /* 平台标题栏 */
+            .platform-header {
+                padding: 12px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 600;
+                font-size: 14px;
+            }
+            
+            /* 平台特定颜色 */
+            .platform-card.toutiao .platform-header { background: #ff6b35; color: white; }
+            .platform-card.baidu .platform-header { background: #317ef3; color: white; }
+            .platform-card.weibo .platform-header { background: #e6162d; color: white; }
+            .platform-card.douyin .platform-header { background: #fe2c55; color: white; }
+            .platform-card.zhihu .platform-header { background: #0084ff; color: white; }
+            .platform-card.bilibili .platform-header { background: #00a1d6; color: white; }
+            .platform-card.tieba .platform-header { background: #f15a22; color: white; }
+            .platform-card.ifeng .platform-header { background: #ce0000; color: white; }
+            .platform-card.wallstreetcn .platform-header { background: #f0f0f0; color: #00b42a; border-bottom: 1px solid #e0e0e0; }
+            .platform-card.cls .platform-header { background: #009966; color: white; }
+            .platform-card.default .platform-header { background: #9e9e9e; color: white; }
+            
+            .platform-title {
+                margin: 0;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            
+            .platform-stats {
+                font-size: 11px;
+                opacity: 0.9;
+            }
+            
+            /* 新闻列表 - 添加滚动条 */
+            .platform-news {
+                padding: 12px 16px;
+                max-height: 400px;
+                overflow-y: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #c0c0c0 #f0f0f0;
+            }
+            
+            /* 滚动条样式 */
+            .platform-news::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            .platform-news::-webkit-scrollbar-track {
+                background: #f0f0f0;
+                border-radius: 3px;
+            }
+            
+            .platform-news::-webkit-scrollbar-thumb {
+                background: #c0c0c0;
+                border-radius: 3px;
+            }
+            
+            .platform-news::-webkit-scrollbar-thumb:hover {
+                background: #a0a0a0;
+            }
+            
+            /* 新闻项 */
+            .news-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 10px 0;
+                border-bottom: 1px solid #e8e8e8;
+                font-size: 14px;
+                line-height: 1.5;
+                transition: background-color 0.2s ease;
+            }
+            
+            .news-item:hover {
+                background-color: #fafafa;
+            }
+            
+            .news-item:last-child {
+                border-bottom: none;
+            }
+            
+            .news-rank {
+                color: #666666;
+                font-size: 12px;
+                font-weight: 600;
+                min-width: 20px;
+                text-align: right;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            
+            .news-rank.top { color: #e53935; font-weight: 700; }
+            .news-rank.high { color: #f57c00; font-weight: 700; }
+            
+            .news-content {
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .news-title {
+                font-size: 14px;
+                color: #212121;
+                margin: 0 0 5px 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 500;
+            }
+            
+            .news-title a {
+                color: #212121 !important;
+                text-decoration: none !important;
+                transition: color 0.2s ease;
+            }
+            
+            .news-title a:hover {
+                color: #1976d2 !important;
+                text-decoration: underline !important;
+            }
+            
+            .news-meta {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 11px;
+                color: #757575;
+            }
+            
+            .news-source {
+                color: #616161;
+                font-weight: 600;
+            }
+            
+            .news-time {
+                color: #9e9e9e;
+            }
+            
+            .news-count {
+                color: #43a047;
+                font-weight: 600;
+            }
+            
+            /* 错误信息 */
             .error-section {
-                background: #fef2f2;
-                border: 1px solid #fecaca;
+                background: #fff8f8;
+                border: 1px solid #ffcccc;
                 border-radius: 8px;
                 padding: 16px;
                 margin-bottom: 24px;
@@ -486,7 +416,7 @@ def render_html_content(
             
             .error-title {
                 color: #dc2626;
-                font-size: 14px;
+                font-size: 13px;
                 font-weight: 600;
                 margin: 0 0 8px 0;
             }
@@ -498,72 +428,96 @@ def render_html_content(
             }
             
             .error-item {
-                color: #991b1b;
-                font-size: 13px;
+                color: #b00020;
+                font-size: 12px;
                 padding: 2px 0;
                 font-family: 'SF Mono', Consolas, monospace;
             }
             
+            /* 页脚 */
             .footer {
-                margin-top: 32px;
-                padding: 20px 24px;
-                background: #f8f9fa;
-                border-top: 1px solid #e5e7eb;
+                margin-top: 24px;
+                padding: 16px 20px;
+                background: #fafafa;
+                border-top: 1px solid #e0e0e0;
                 text-align: center;
             }
             
             .footer-content {
-                font-size: 13px;
-                color: #6b7280;
-                line-height: 1.6;
+                font-size: 12px;
+                color: #666666;
+                line-height: 1.4;
             }
             
             .footer-link {
-                color: #4f46e5;
+                color: #2196f3;
                 text-decoration: none;
                 font-weight: 500;
                 transition: color 0.2s ease;
             }
             
             .footer-link:hover {
-                color: #7c3aed;
+                color: #1976d2;
                 text-decoration: underline;
             }
             
             .project-name {
                 font-weight: 600;
-                color: #374151;
+                color: #333333;
+            }
+            
+            /* 响应式设计 */
+            @media (max-width: 1200px) {
+                .platforms-container,
+                .new-platforms-container {
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 12px;
+                }
             }
             
             @media (max-width: 768px) {
-                .news-grid {
+                body { padding: 12px; }
+                .container { border-radius: 8px; }
+                .header { padding: 20px; }
+                .content { padding: 16px; }
+                .platforms-container,
+                .new-platforms-container {
                     grid-template-columns: 1fr;
                     gap: 12px;
                 }
-                
                 .header-info {
                     grid-template-columns: 1fr 1fr;
-                    gap: 12px;
+                    gap: 10px;
+                }
+                .save-buttons {
+                    position: static;
+                    margin-bottom: 12px;
+                    display: flex;
+                    gap: 8px;
+                    justify-content: center;
                 }
             }
             
             @media (max-width: 480px) {
-                body { padding: 12px; }
-                .header { padding: 24px 20px; }
-                .content { padding: 20px; }
-                .footer { padding: 16px 20px; }
-                .header-info { grid-template-columns: 1fr; gap: 12px; }
-                .save-buttons {
-                    position: static;
-                    margin-bottom: 16px;
-                    display: flex;
+                .header-info {
+                    grid-template-columns: 1fr;
                     gap: 8px;
-                    justify-content: center;
+                }
+                .save-buttons {
                     flex-direction: column;
-                    width: 100%;
                 }
                 .save-btn {
                     width: 100%;
+                }
+                .new-item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 4px;
+                }
+                .news-item {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 4px;
                 }
             }
         </style>
@@ -647,15 +601,16 @@ def render_html_content(
     if report_data["new_titles"]:
         html += f"""
                 <div class="new-section">
-                    <div class="new-section-title">本次新增热点 (共 {report_data['total_new_count']} 条)</div>"""
+                    <div class="new-section-title">本次新增热点 (共 {report_data['total_new_count']} 条)</div>
+                    <div class="new-platforms-container">"""
 
         for source_data in report_data["new_titles"]:
             escaped_source = html_escape(source_data["source_name"])
             titles_count = len(source_data["titles"])
 
             html += f"""
-                    <div class="new-source-group">
-                        <div class="new-source-title">{escaped_source} · {titles_count}条</div>"""
+                        <div class="new-platform-card">
+                            <div class="new-source-title">{escaped_source} · {titles_count}条</div>"""
 
             # 为新增新闻也添加序号
             for idx, title_data in enumerate(source_data["titles"], 1):
@@ -678,11 +633,11 @@ def render_html_content(
                     rank_text = "?"
 
                 html += f"""
-                        <div class="new-item">
-                            <div class="new-item-number">{idx}</div>
-                            <div class="new-item-rank {rank_class}">{rank_text}</div>
-                            <div class="new-item-content">
-                                <div class="new-item-title">"""
+                            <div class="new-item">
+                                <div class="new-item-number">{idx}</div>
+                                <div class="new-item-rank {rank_class}">{rank_text}</div>
+                                <div class="new-item-content">
+                                    <div class="new-item-title">"""
 
                 # 处理新增新闻的链接
                 escaped_title = html_escape(title_data["title"])
@@ -690,240 +645,137 @@ def render_html_content(
 
                 if link_url:
                     escaped_url = html_escape(link_url)
-                    html += f'<a href="{escaped_url}" target="_blank" class="news-link">{escaped_title}</a>'
+                    html += f'<a href="{escaped_url}" target="_blank" style="color: #2196f3; text-decoration: none;">{escaped_title}</a>'
                 else:
                     html += escaped_title
 
                 html += """
-                                </div>
-                            </div>
-                        </div>"""
-
-            html += """
-                    </div>"""
-
-        html += """
-                </div>"""
-
-    # 处理主要统计数据
-    if report_data["stats"]:
-        total_count = len(report_data["stats"])
-
-        for i, stat in enumerate(report_data["stats"], 1):
-            count = stat["count"]
-
-            # 确定热度等级
-            if count >= 10:
-                count_class = "hot"
-            elif count >= 5:
-                count_class = "warm"
-            else:
-                count_class = ""
-
-            escaped_word = html_escape(stat["word"])
-
-            html += f"""
-                <div class="word-group">
-                    <div class="word-header">
-                        <div class="word-info">
-                            <div class="word-name">{escaped_word}</div>
-                            <div class="word-count {count_class}">{count} 条</div>
-                        </div>
-                        <div class="word-index">{i}/{total_count}</div>
-                    </div>"""
-
-            # 按平台对新闻进行分组
-            platform_news = {}
-            for title_data in stat["titles"]:
-                source_name = title_data["source_name"]
-                if source_name not in platform_news:
-                    platform_news[source_name] = []
-                platform_news[source_name].append(title_data)
-            
-            # 遍历每个平台，展示该平台下的新闻卡片
-            for platform, titles in platform_news.items():
-                total = len(titles)
-                show_more = total > 10
-                visible_titles = titles[:10]
-                hidden_titles = titles[10:]
-                
-                # 生成唯一的平台ID用于标识
-                platform_id = f"platform-{i}-{platform.replace(' ', '-').lower()}"
-                
-                html += f"""
-                    <div class="platform-group">
-                        <div class="platform-title">{html_escape(platform)} · {total}条</div>
-                        <div class="news-grid">"""
-                
-                # 显示前10条新闻卡片
-                for title_data in visible_titles:
-                    is_new = title_data.get("is_new", False)
-                    new_class = "new" if is_new else ""
-                    
-                    html += f"""
-                        <div class="news-card {new_class}">
-                            <div class="card-header">
-                                <span class="card-source">{html_escape(title_data["source_name"])}</span>"""
-                    
-                    # 处理排名显示
-                    ranks = title_data.get("ranks", [])
-                    if ranks:
-                        min_rank = min(ranks)
-                        max_rank = max(ranks)
-                        rank_threshold = title_data.get("rank_threshold", 10)
-                    
-                        # 确定排名等级
-                        if min_rank <= 3:
-                            rank_class = "top"
-                        elif min_rank <= rank_threshold:
-                            rank_class = "high"
-                        else:
-                            rank_class = ""
-                    
-                        if min_rank == max_rank:
-                            rank_text = str(min_rank)
-                        else:
-                            rank_text = f"{min_rank}-{max_rank}"
-                    
-                        html += f'<span class="card-rank {rank_class}">{rank_text}</span>'
-                    
-                    # 处理时间显示
-                    time_display = title_data.get("time_display", "")
-                    if time_display:
-                        # 简化时间显示格式，将波浪线替换为~
-                        simplified_time = (
-                            time_display.replace(" ~ ", "~")
-                            .replace("[", "")
-                            .replace("]", "")
-                        )
-                        html += (
-                            f'<span class="card-time">{html_escape(simplified_time)}</span>'
-                        )
-                    
-                    # 处理出现次数
-                    count_info = title_data.get("count", 1)
-                    if count_info > 1:
-                        html += f'<span class="card-count">{count_info}次</span>'
-                    
-                    html += """
-                            </div>
-                            <div class="card-title">"""
-                    
-                    # 处理标题和链接
-                    escaped_title = html_escape(title_data["title"])
-                    link_url = title_data.get("mobile_url") or title_data.get("url", "")
-                    
-                    if link_url:
-                        escaped_url = html_escape(link_url)
-                        html += f'<a href="{escaped_url}" target="_blank" class="card-link">{escaped_title}</a>'
-                    else:
-                        html += escaped_title
-                    
-                    html += """
-                            </div>
-                        </div>"""
-                
-                # 隐藏的新闻卡片
-                if hidden_titles:
-                    html += f"""
-                        <div class="news-card hidden" id="{platform_id}-hidden" style="display: none;">
-                            <div class="news-grid" id="{platform_id}-hidden-grid">"""
-                    
-                    for title_data in hidden_titles:
-                        is_new = title_data.get("is_new", False)
-                        new_class = "new" if is_new else ""
-                        
-                        html += f"""
-                            <div class="news-card {new_class}">
-                                <div class="card-header">
-                                    <span class="card-source">{html_escape(title_data["source_name"])}</span>"""
-                        
-                        # 处理排名显示
-                        ranks = title_data.get("ranks", [])
-                        if ranks:
-                            min_rank = min(ranks)
-                            max_rank = max(ranks)
-                            rank_threshold = title_data.get("rank_threshold", 10)
-                        
-                            # 确定排名等级
-                            if min_rank <= 3:
-                                rank_class = "top"
-                            elif min_rank <= rank_threshold:
-                                rank_class = "high"
-                            else:
-                                rank_class = ""
-                        
-                            if min_rank == max_rank:
-                                rank_text = str(min_rank)
-                            else:
-                                rank_text = f"{min_rank}-{max_rank}"
-                        
-                            html += f'<span class="card-rank {rank_class}">{rank_text}</span>'
-                        
-                        # 处理时间显示
-                        time_display = title_data.get("time_display", "")
-                        if time_display:
-                            # 简化时间显示格式，将波浪线替换为~
-                            simplified_time = (
-                                time_display.replace(" ~ ", "~")
-                                .replace("[", "")
-                                .replace("]", "")
-                            )
-                            html += (
-                                f'<span class="card-time">{html_escape(simplified_time)}</span>'
-                            )
-                        
-                        # 处理出现次数
-                        count_info = title_data.get("count", 1)
-                        if count_info > 1:
-                            html += f'<span class="card-count">{count_info}次</span>'
-                        
-                        html += """
-                                </div>
-                                <div class="card-title">"""
-                        
-                        # 处理标题和链接
-                        escaped_title = html_escape(title_data["title"])
-                        link_url = title_data.get("mobile_url") or title_data.get("url", "")
-                        
-                        if link_url:
-                            escaped_url = html_escape(link_url)
-                            html += f'<a href="{escaped_url}" target="_blank" class="card-link">{escaped_title}</a>'
-                        else:
-                            html += escaped_title
-                        
-                        html += """
+                                    </div>
                                 </div>
                             </div>"""
-                    
-                    html += """
-                            </div>
+
+            html += """
                         </div>"""
-                
-                # 添加查看更多按钮
-                if show_more:
-                    html += f"""
-                        <div class="show-more-container" style="text-align: center; margin-top: 16px;">
-                            <button class="show-more-btn" onclick="toggleNews('{platform_id}', {total})" style="
-                                background: #f3f4f6;
-                                border: 1px solid #d1d5db;
-                                color: #374151;
-                                padding: 8px 16px;
-                                border-radius: 6px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                font-weight: 500;
-                                transition: all 0.2s ease;
-                            ">
-                                查看更多 ({total - 10} 条)
-                            </button>
-                        </div>"""
-                
-                html += """
+
+        html += """
                     </div>
                 </div>"""
 
-            html += """
+    # 按平台分组所有新闻
+    all_platform_news = {}
+    for stat in report_data["stats"]:
+        for title_data in stat["titles"]:
+            source_name = title_data["source_name"]
+            if source_name not in all_platform_news:
+                all_platform_news[source_name] = []
+            all_platform_news[source_name].append(title_data)
+    
+    # 处理主要统计数据 - 按平台卡片展示
+    if all_platform_news:
+        # 平台名称映射到CSS类名
+        platform_css_map = {
+            "今日头条": "toutiao",
+            "百度热搜": "baidu",
+            "微博": "weibo",
+            "抖音": "douyin",
+            "知乎": "zhihu",
+            "bilibili 热搜": "bilibili",
+            "贴吧": "tieba",
+            "凤凰网": "ifeng",
+            "华尔街见闻": "wallstreetcn",
+            "财联社热门": "cls"
+        }
+        
+        html += """
+                <div class="platforms-container">"""
+        
+        # 遍历每个平台，创建平台卡片
+        for platform, titles in all_platform_news.items():
+            total = len(titles)
+            show_more = total > 10
+            visible_titles = titles[:10]
+            hidden_titles = titles[10:]
+            
+            # 生成唯一的平台ID用于标识
+            platform_id = f"platform-{platform.replace(' ', '-').lower()}"
+            
+            # 获取平台对应的CSS类名
+            platform_css = platform_css_map.get(platform, "default")
+            
+            html += f"""
+                    <div class="platform-card {platform_css}">
+                        <div class="platform-header">
+                            <h3 class="platform-title">{html_escape(platform)}</h3>
+                            <span class="platform-stats">{total} 条</span>
+                        </div>
+                        <div class="platform-news">"""
+            
+            # 显示所有新闻
+            for idx, title_data in enumerate(titles, 1):
+                is_new = title_data.get("is_new", False)
+                
+                # 处理排名显示
+                ranks = title_data.get("ranks", [])
+                rank_text = ""
+                rank_class = ""
+                if ranks:
+                    min_rank = min(ranks)
+                    if min_rank <= 3:
+                        rank_class = "top"
+                    elif min_rank <= title_data.get("rank_threshold", 10):
+                        rank_class = "high"
+                    
+                    if len(ranks) == 1:
+                        rank_text = str(ranks[0])
+                    else:
+                        rank_text = f"{min(ranks)}-{max(ranks)}"
+                
+                # 处理时间显示
+                time_display = title_data.get("time_display", "")
+                if time_display:
+                    simplified_time = time_display.replace(" ~ ", "~").replace("[", "").replace("]", "")
+                
+                # 处理出现次数
+                count_info = title_data.get("count", 1)
+                
+                # 处理标题和链接
+                escaped_title = html_escape(title_data["title"])
+                link_url = title_data.get("mobile_url") or title_data.get("url", "")
+                
+                html += f"""
+                            <div class="news-item">
+                                <div class="news-rank {rank_class}">{rank_text}</div>
+                                <div class="news-content">
+                                    <div class="news-title">"""
+                
+                if link_url:
+                    escaped_url = html_escape(link_url)
+                    html += f'<a href="{escaped_url}" target="_blank">{escaped_title}</a>'
+                else:
+                    html += escaped_title
+                
+                html += f"""
+                                    </div>
+                                    <div class="news-meta">"""
+                
+                if time_display:
+                    html += f'<span class="news-time">{html_escape(simplified_time)}</span>'
+                
+                if count_info > 1:
+                    html += f'<span class="news-count">{count_info}次</span>'
+                
+                html += f"""
+                                    </div>
+                                </div>
+                            </div>"""
+            
+            html += f"""
+                        </div>"""
+            
+            html += f"""
+                    </div>"""
+        
+        html += """
                 </div>"""
 
     html += """
