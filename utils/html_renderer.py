@@ -643,6 +643,68 @@ def render_html_content(
                     </ul>
                 </div>"""
 
+    # 处理新增新闻区域（放在上面）
+    if report_data["new_titles"]:
+        html += f"""
+                <div class="new-section">
+                    <div class="new-section-title">本次新增热点 (共 {report_data['total_new_count']} 条)</div>"""
+
+        for source_data in report_data["new_titles"]:
+            escaped_source = html_escape(source_data["source_name"])
+            titles_count = len(source_data["titles"])
+
+            html += f"""
+                    <div class="new-source-group">
+                        <div class="new-source-title">{escaped_source} · {titles_count}条</div>"""
+
+            # 为新增新闻也添加序号
+            for idx, title_data in enumerate(source_data["titles"], 1):
+                ranks = title_data.get("ranks", [])
+
+                # 处理新增新闻的排名显示
+                rank_class = ""
+                if ranks:
+                    min_rank = min(ranks)
+                    if min_rank <= 3:
+                        rank_class = "top"
+                    elif min_rank <= title_data.get("rank_threshold", 10):
+                        rank_class = "high"
+
+                    if len(ranks) == 1:
+                        rank_text = str(ranks[0])
+                    else:
+                        rank_text = f"{min(ranks)}-{max(ranks)}"
+                else:
+                    rank_text = "?"
+
+                html += f"""
+                        <div class="new-item">
+                            <div class="new-item-number">{idx}</div>
+                            <div class="new-item-rank {rank_class}">{rank_text}</div>
+                            <div class="new-item-content">
+                                <div class="new-item-title">"""
+
+                # 处理新增新闻的链接
+                escaped_title = html_escape(title_data["title"])
+                link_url = title_data.get("mobile_url") or title_data.get("url", "")
+
+                if link_url:
+                    escaped_url = html_escape(link_url)
+                    html += f'<a href="{escaped_url}" target="_blank" class="news-link">{escaped_title}</a>'
+                else:
+                    html += escaped_title
+
+                html += """
+                                </div>
+                            </div>
+                        </div>"""
+
+            html += """
+                    </div>"""
+
+        html += """
+                </div>"""
+
     # 处理主要统计数据
     if report_data["stats"]:
         total_count = len(report_data["stats"])
@@ -680,13 +742,21 @@ def render_html_content(
             
             # 遍历每个平台，展示该平台下的新闻卡片
             for platform, titles in platform_news.items():
+                total = len(titles)
+                show_more = total > 10
+                visible_titles = titles[:10]
+                hidden_titles = titles[10:]
+                
+                # 生成唯一的平台ID用于标识
+                platform_id = f"platform-{i}-{platform.replace(' ', '-').lower()}"
+                
                 html += f"""
                     <div class="platform-group">
-                        <div class="platform-title">{html_escape(platform)} · {len(titles)}条</div>
+                        <div class="platform-title">{html_escape(platform)} · {total}条</div>
                         <div class="news-grid">"""
                 
-                # 为每个平台下的新闻创建卡片
-                for title_data in titles:
+                # 显示前10条新闻卡片
+                for title_data in visible_titles:
                     is_new = title_data.get("is_new", False)
                     new_class = "new" if is_new else ""
                     
@@ -753,73 +823,107 @@ def render_html_content(
                             </div>
                         </div>"""
                 
+                # 隐藏的新闻卡片
+                if hidden_titles:
+                    html += f"""
+                        <div class="news-card hidden" id="{platform_id}-hidden" style="display: none;">
+                            <div class="news-grid" id="{platform_id}-hidden-grid">"""
+                    
+                    for title_data in hidden_titles:
+                        is_new = title_data.get("is_new", False)
+                        new_class = "new" if is_new else ""
+                        
+                        html += f"""
+                            <div class="news-card {new_class}">
+                                <div class="card-header">
+                                    <span class="card-source">{html_escape(title_data["source_name"])}</span>"""
+                        
+                        # 处理排名显示
+                        ranks = title_data.get("ranks", [])
+                        if ranks:
+                            min_rank = min(ranks)
+                            max_rank = max(ranks)
+                            rank_threshold = title_data.get("rank_threshold", 10)
+                        
+                            # 确定排名等级
+                            if min_rank <= 3:
+                                rank_class = "top"
+                            elif min_rank <= rank_threshold:
+                                rank_class = "high"
+                            else:
+                                rank_class = ""
+                        
+                            if min_rank == max_rank:
+                                rank_text = str(min_rank)
+                            else:
+                                rank_text = f"{min_rank}-{max_rank}"
+                        
+                            html += f'<span class="card-rank {rank_class}">{rank_text}</span>'
+                        
+                        # 处理时间显示
+                        time_display = title_data.get("time_display", "")
+                        if time_display:
+                            # 简化时间显示格式，将波浪线替换为~
+                            simplified_time = (
+                                time_display.replace(" ~ ", "~")
+                                .replace("[", "")
+                                .replace("]", "")
+                            )
+                            html += (
+                                f'<span class="card-time">{html_escape(simplified_time)}</span>'
+                            )
+                        
+                        # 处理出现次数
+                        count_info = title_data.get("count", 1)
+                        if count_info > 1:
+                            html += f'<span class="card-count">{count_info}次</span>'
+                        
+                        html += """
+                                </div>
+                                <div class="card-title">"""
+                        
+                        # 处理标题和链接
+                        escaped_title = html_escape(title_data["title"])
+                        link_url = title_data.get("mobile_url") or title_data.get("url", "")
+                        
+                        if link_url:
+                            escaped_url = html_escape(link_url)
+                            html += f'<a href="{escaped_url}" target="_blank" class="card-link">{escaped_title}</a>'
+                        else:
+                            html += escaped_title
+                        
+                        html += """
+                                </div>
+                            </div>"""
+                    
+                    html += """
+                            </div>
+                        </div>"""
+                
+                # 添加查看更多按钮
+                if show_more:
+                    html += f"""
+                        <div class="show-more-container" style="text-align: center; margin-top: 16px;">
+                            <button class="show-more-btn" onclick="toggleNews('{platform_id}', {total})" style="
+                                background: #f3f4f6;
+                                border: 1px solid #d1d5db;
+                                color: #374151;
+                                padding: 8px 16px;
+                                border-radius: 6px;
+                                cursor: pointer;
+                                font-size: 14px;
+                                font-weight: 500;
+                                transition: all 0.2s ease;
+                            ">
+                                查看更多 ({total - 10} 条)
+                            </button>
+                        </div>"""
+                
                 html += """
                     </div>
                 </div>"""
 
             html += """
-                </div>"""
-
-    # 处理新增新闻区域
-    if report_data["new_titles"]:
-        html += f"""
-                <div class="new-section">
-                    <div class="new-section-title">本次新增热点 (共 {report_data['total_new_count']} 条)</div>"""
-
-        for source_data in report_data["new_titles"]:
-            escaped_source = html_escape(source_data["source_name"])
-            titles_count = len(source_data["titles"])
-
-            html += f"""
-                    <div class="new-source-group">
-                        <div class="new-source-title">{escaped_source} · {titles_count}条</div>"""
-
-            # 为新增新闻也添加序号
-            for idx, title_data in enumerate(source_data["titles"], 1):
-                ranks = title_data.get("ranks", [])
-
-                # 处理新增新闻的排名显示
-                rank_class = ""
-                if ranks:
-                    min_rank = min(ranks)
-                    if min_rank <= 3:
-                        rank_class = "top"
-                    elif min_rank <= title_data.get("rank_threshold", 10):
-                        rank_class = "high"
-
-                    if len(ranks) == 1:
-                        rank_text = str(ranks[0])
-                    else:
-                        rank_text = f"{min(ranks)}-{max(ranks)}"
-                else:
-                    rank_text = "?"
-
-                html += f"""
-                        <div class="new-item">
-                            <div class="new-item-number">{idx}</div>
-                            <div class="new-item-rank {rank_class}">{rank_text}</div>
-                            <div class="new-item-content">
-                                <div class="new-item-title">"""
-
-                # 处理新增新闻的链接
-                escaped_title = html_escape(title_data["title"])
-                link_url = title_data.get("mobile_url") or title_data.get("url", "")
-
-                if link_url:
-                    escaped_url = html_escape(link_url)
-                    html += f'<a href="{escaped_url}" target="_blank" class="news-link">{escaped_title}</a>'
-                else:
-                    html += escaped_title
-
-                html += """
-                                </div>
-                            </div>
-                        </div>"""
-
-            html += """
-                    </div>"""
-
-        html += """
                 </div>"""
 
     html += """
@@ -845,6 +949,23 @@ def render_html_content(
         </div>
         
         <script>
+            // 切换显示/隐藏更多新闻
+            function toggleNews(platformId, total) {
+                const button = event.target;
+                const hiddenContainer = document.getElementById(`${platformId}-hidden`);
+                const hiddenGrid = document.getElementById(`${platformId}-hidden-grid`);
+                
+                if (hiddenContainer.style.display === 'none') {
+                    // 显示隐藏的新闻
+                    hiddenContainer.style.display = 'block';
+                    button.textContent = '收起';
+                } else {
+                    // 隐藏新闻
+                    hiddenContainer.style.display = 'none';
+                    button.textContent = `查看更多 (${total - 10} 条)`;
+                }
+            }
+            
             async function saveAsImage() {
                 const button = event.target;
                 const originalText = button.textContent;
