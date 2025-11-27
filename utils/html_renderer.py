@@ -158,6 +158,8 @@ def render_html_content(
                 border-radius: 8px;
                 padding: 16px;
                 transition: all 0.2s ease;
+                height:260px;
+                overflow:auto;
             }
             
             .new-platform-card:hover {
